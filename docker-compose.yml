@@ -1,0 +1,30 @@
+version: '3'
+services:
+  rust:
+    depends_on:
+      - db
+    build: ./rust
+    container_name: rust
+    ports:
+      - "8000:8000"
+    environment:
+      TZ: 'Asia/Tokyo'
+    tty: true
+    volumes:
+      - ./rust:/app
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+        - "3306:3306"
+    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: diesel_demo
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      TZ: Asia/Tokyo
+    volumes:
+        - ./docker/db/data:/var/lib/mysql
+        - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+        - ./docker/db/sql:/docker-entrypoint-initdb.d
