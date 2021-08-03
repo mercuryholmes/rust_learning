@@ -8,3 +8,5 @@ RUN cargo build --release
 COPY ./ ./
 RUN cargo build --release
 RUN cargo install diesel_cli --no-default-features --features mysql
+RUN cargo install sccache
+ENV RUSTC_WRAPPER /usr/local/cargo/bin/sccache
