@@ -1,5 +1,5 @@
 use std::error;
-use csv::Writer;
+use csv::WriterBuilder;
 use diesel::prelude::*;
 use myapp::models::models::Post;
 use myapp::models::schema::posts as posts_schema;
@@ -12,11 +12,10 @@ fn main() -> Result<(), Box<dyn error::Error>> {
         .load::<Post>(&connection)
         .expect("Error loading posts");
     // CSVに書込み
-    let mut wtr = Writer::from_path("foo.csv")?;
+    let mut wtr = WriterBuilder::new().from_path("foo.csv")?;
     for post in posts {
-        println!("{}", post.title);
-        println!("{}", post.body);
-        wtr.write_record(&[post.title, post.body])?;
+        println!("{}, {1}, {2}", post.id, post.title, post.body);
+        wtr.write_record(&[post.id.to_string(), post.title, post.body])?;
     }
     wtr.flush()?;
     Ok(())
