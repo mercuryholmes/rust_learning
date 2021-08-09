@@ -7,6 +7,7 @@ RUN echo "fn main(){}" > src/main.rs
 RUN cargo build --release
 COPY ./ ./
 RUN cargo build --release
-RUN cargo install diesel_cli --no-default-features --features mysql
+RUN cargo install cargo-edit
 RUN cargo install sccache
+RUN cargo install diesel_cli --no-default-features --features mysql
 ENV RUSTC_WRAPPER /usr/local/cargo/bin/sccache

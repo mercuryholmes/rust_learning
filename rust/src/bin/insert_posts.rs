@@ -1,7 +1,7 @@
 use diesel::prelude::*;
-use myapp::models::NewPost;
-use myapp::schema::posts as posts_schema;
-use myapp::utils::establish_connection;
+use myapp::models::models::NewPost;
+use myapp::models::schema::posts as posts_schema;
+use myapp::models::db_connect::establish_connection;
 
 fn main() {
     let connection = establish_connection();
