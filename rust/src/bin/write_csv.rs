@@ -1,11 +1,11 @@
-use std::error;
-use csv::WriterBuilder;
+use anyhow::{Result};
 use diesel::prelude::*;
+use csv::WriterBuilder;
 use myapp::models::models::Post;
 use myapp::models::schema::posts as posts_schema;
 use myapp::models::db_connect::establish_connection;
 
-fn main() -> Result<(), Box<dyn error::Error>> {
+fn main() -> Result<()> {
     // データの取得
     let connection = establish_connection();
     let posts = posts_schema::dsl::posts

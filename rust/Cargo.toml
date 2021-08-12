@@ -9,3 +9,6 @@ edition = "2018"
 dotenv = "0.15.0"
 diesel = { version = "1.4.4", features = ["mysql"] }
 csv = "1.1.6"
+walkdir = "2.3.2"
+anyhow = "1.0.42"
+thiserror = "1.0.26"

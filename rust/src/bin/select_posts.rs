@@ -1,9 +1,10 @@
+use anyhow::{Result};
 use diesel::prelude::*;
 use myapp::models::models::Post;
 use myapp::models::schema::posts as posts_schema;
 use myapp::models::db_connect::establish_connection;
 
-fn main() {
+fn main() -> Result<()> {
     let connection = establish_connection();
     //変更
     let posts = posts_schema::dsl::posts
@@ -14,4 +15,5 @@ fn main() {
         println!("-----------\n");
         println!("{}", post.body);
     }
+    Ok(())
 }

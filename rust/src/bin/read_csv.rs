@@ -1,11 +1,11 @@
-use std::error::Error;
-use csv::ReaderBuilder;
+use anyhow::{Result};
 use diesel::prelude::*;
+use csv::ReaderBuilder;
 use myapp::models::models::NewPost;
 use myapp::models::schema::posts as posts_schema;
 use myapp::models::db_connect::establish_connection;
 
-fn main() -> Result<(), Box<dyn Error>> {
+fn main() -> Result<()> {
     // DBに接続
     let connection = establish_connection();
     // CSV読み込み
